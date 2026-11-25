@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashtag Generator - ClickCurious</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .hashtag-container {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .hashtag-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+        }
+
+        .hashtag-card h1 {
+            margin-bottom: 10px;
+        }
+
+        .hashtag-card p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .hashtag-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .hashtag-form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .hashtag-form input,
+        .hashtag-form select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .hashtag-form button,
+        .copy-all-button {
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .hashtag-form button:hover,
+        .copy-all-button:hover {
+            background: #1d4ed8;
+        }
+
+        .hashtag-results {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .hashtag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .hashtag-item {
+            background: #e8efff;
+            color: #2454b5;
+            padding: 9px 13px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .copy-all-button {
+            width: 100%;
+        }
+
+        .hashtag-error {
+            color: #dc2626;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .hashtag-container {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .hashtag-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<!-- NAVIGATION -->
+<header class="navbar">
+    <a href="index.html" class="logo">
+        Click<span>Curious</span><span class="logo-dot">.</span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#popular">All Tools</a>
+        <a href="index.html#about">About</a>
+    </nav>
+
+    <a href="index.html#popular" class="nav-button">Explore Tools ↗</a>
+</header>
+<body>
+   
+
+    <main class="hashtag-container">
+        <section class="hashtag-card">
+            <h1>Hashtag Generator</h1>
+            <p>Generate hashtag ideas for your social media posts.</p>
+
+            <div class="hashtag-form">
+                <div>
+                    <label for="hashtagTopic">Enter your topic or keywords</label>
+                    <input
+                        type="text"
+                        id="hashtagTopic"
+                        placeholder="e.g. healthy food, travel, fitness"
+                    >
+                </div>
+
+                <div>
+                    <label for="hashtagPlatform">Social Media Platform</label>
+                    <select id="hashtagPlatform">
+                        <option value="instagram">Instagram</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="facebook">Facebook</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="hashtagCategory">Category</label>
+                    <select id="hashtagCategory">
+                        <option value="general">General</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="business">Business</option>
+                        <option value="fitness">Fitness</option>
+                        <option value="travel">Travel</option>
+                        <option value="food">Food</option>
+                        <option value="technology">Technology</option>
+                        <option value="beauty">Beauty</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="education">Education</option>
+                        <option value="lifestyle">Lifestyle</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="hashtagCount">Number of Hashtags</label>
+                    <select id="hashtagCount">
+                        <option value="10">10 Hashtags</option>
+                        <option value="20" selected>20 Hashtags</option>
+                        <option value="30">30 Hashtags</option>
+                    </select>
+                </div>
+
+                <button id="generateHashtags">Generate Hashtags</button>
+            </div>
+
+            <p id="hashtagError" class="hashtag-error"></p>
+
+            <div id="hashtagResults" class="hashtag-results">
+                <h2>Your Hashtags</h2>
+                <div id="hashtagList" class="hashtag-list"></div>
+                <button id="copyAllHashtags" class="copy-all-button">
+                    Copy All Hashtags
+                </button>
+                <p id="copyMessage"></p>
+            </div>
+        </section>
+    </main>
+
+    <script src="hashtag-generator.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator | ClickCurious</title>
+    <meta name="description" content="Calculate discounts, savings and final prices easily with ClickCurious.">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .calculator-container {
+            max-width: 1000px;
+            margin: 55px auto;
+            padding: 25px;
+        }
+
+        .calculator-card {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(20, 40, 80, 0.06);
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap: 24px;
+        }
+
+        .calculator-card h1 
+        .calculatro-description {
+            grid-column: 1;
+        }
+
+        .result-card {
+            grid-column: 2;
+            margin-top: 0;
+            align-self: start;
+        }
+
+        .calculator-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .calculator-form label {
+            display: block;
+            font-weight: 600;
+            margin: 18px 0 8px;
+        }
+
+        .calculator-form input,
+        .calculator-form select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d8e0ec;
+            border-radius: 9px;
+            font-size: 15px;
+            background: white;
+        }
+
+        .calculate-button,
+        .reset-button {
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .calculate-button {
+            width: 100%;
+            margin-top: 25px;
+            background: #2563eb;
+            color: white;
+        }
+
+        .calculate-button:hover {
+            background: #1d4ed8;
+        }
+
+        .reset-button {
+            width: 100%;
+            margin-top: 10px;
+            background: #f1f5f9;
+            color: #334155;
+        }
+
+        .results-card {
+            display: none;
+            margin-top: 30px;
+            padding: 22px;
+            border-radius: 12px;
+            background: #eff6ff;
+        }
+
+        .results-card h2 {
+            font-size: 21px;
+            margin-bottom: 18px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #dbeafe;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .final-price {
+            color: #1d4ed8;
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .savings {
+            color: #15803d;
+            font-weight: 700;
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .calculator-container {
+                margin: 25px auto;
+                padding: 15px;
+            }
+
+            .calculator-card {
+                padding: 20px;
+            }
+
+            .calculator-card h1 {
+                font-size: 26px;
+            }
+
+            .calculator-card {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-form,
+            .results-card {
+                 grid-column: 1;
+            }
+
+        }
+    </style>
+</head>
+<!-- NAVIGATION -->
+<header class="navbar">
+    <a href="index.html" class="logo">
+        Click<span>Curious</span><span class="logo-dot">.</span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#popular">All Tools</a>
+        <a href="index.html#about">About</a>
+    </nav>
+
+    <a href="index.html#popular" class="nav-button">Explore Tools ↗</a>
+</header>
+<body>
+
+    
+
+    <main class="calculator-container">
+        <div class="calculator-card">
+
+            <h1>Discount Calculator</h1>
+
+            <p class="calculator-description">
+                Calculate how much you save and what you pay after a discount.
+                Enter the original price and discount percentage below.
+            </p>
+
+            <div class="calculator-form">
+
+                <label for="currency">Choose currency</label>
+                <select id="currency">
+                    <option value="LKR">LKR - Sri Lankan Rupee</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                </select>
+
+                <label for="originalPrice">Original price</label>
+                <input
+                    type="number"
+                    id="originalPrice"
+                    placeholder="e.g. 10000"
+                    min="0"
+                    step="any"
+                >
+
+                <label for="discountPercentage">Discount percentage (%)</label>
+                <input
+                    type="number"
+                    id="discountPercentage"
+                    placeholder="e.g. 20"
+                    min="0"
+                    max="100"
+                    step="any"
+                >
+
+                <button class="calculate-button" id="calculateButton">
+                    Calculate Discount
+                </button>
+
+                <button class="reset-button" id="resetButton">
+                    Reset Calculator
+                </button>
+
+                <p class="error-message" id="errorMessage" role="alert"></p>
+
+            </div>
+
+            <section class="results-card" id="resultsCard" aria-live="polite">
+                <h2>Discount Results</h2>
+
+                <div class="result-row">
+                    <span>Original Price</span>
+                    <strong id="resultOriginal"></strong>
+                </div>
+
+                <div class="result-row">
+                    <span>Discount</span>
+                    <strong id="resultDiscount"></strong>
+                </div>
+
+                <div class="result-row">
+                    <span>You Save</span>
+                    <strong class="savings" id="resultSavings"></strong>
+                </div>
+
+                <div class="result-row">
+                    <span>Final Price</span>
+                    <strong class="final-price" id="resultFinal"></strong>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="discount-calculator.js"></script>
+
+</body>
+</html>

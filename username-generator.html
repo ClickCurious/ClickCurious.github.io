@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Generator | ClickCurious</title>
+    <meta name="description" content="Generate creative usernames for social media, gaming and more.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .generator-container {
+            max-width: 760px;
+            margin: 55px auto;
+            padding: 25px;
+        }
+
+        .generator-card {
+            background: white;
+            border: 1px solid #e5eaf2;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(20, 40, 80, 0.06);
+        }
+
+        .generator-card h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .generator-description {
+            color: #64748b;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .generator-form label {
+            display: block;
+            font-weight: 600;
+            margin: 18px 0 8px;
+        }
+
+        .generator-form input,
+        .generator-form select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d8e0ec;
+            border-radius: 9px;
+            font-size: 15px;
+            background: white;
+        }
+
+        .generate-button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .generate-button:hover {
+            background: #1d4ed8;
+        }
+
+        .results-section {
+            margin-top: 30px;
+        }
+
+        .results-section h2 {
+            font-size: 21px;
+            margin-bottom: 15px;
+        }
+
+        .username-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 15px;
+            margin-bottom: 10px;
+            border: 1px solid #e5eaf2;
+            border-radius: 9px;
+            background: #f8fafc;
+        }
+
+        .username-result strong {
+            overflow-wrap: anywhere;
+        }
+
+        .copy-button {
+            padding: 8px 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            background: white;
+            cursor: pointer;
+            color: #2563eb;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .copy-button:hover {
+            background: #eff6ff;
+        }
+
+        #copyMessage {
+            color: #15803d;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .generator-container {
+                margin: 25px auto;
+                padding: 15px;
+            }
+
+            .generator-card {
+                padding: 20px;
+            }
+
+            .generator-card h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+   
+<!-- NAVIGATION -->
+<header class="navbar">
+    <a href="index.html" class="logo">
+        Click<span>Curious</span><span class="logo-dot">.</span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#popular">All Tools</a>
+        <a href="index.html#about">About</a>
+    </nav>
+
+    <a href="index.html#popular" class="nav-button">Explore Tools ↗</a>
+</header>
+
+
+    <main class="generator-container">
+        <div class="generator-card">
+
+            <h1>Username Generator</h1>
+
+            <p class="generator-description">
+                Discover creative usernames for gaming, social media
+                and online profiles. Enter a name or keyword to get started.
+            </p>
+
+            <div class="generator-form">
+
+                <label for="baseName">Your name or keyword</label>
+                <input
+                    type="text"
+                    id="baseName"
+                    placeholder="e.g. Alex, Tiger, Star"
+                    maxlength="30"
+                >
+
+                <label for="usernameStyle">Choose a username style</label>
+<select id="usernameStyle">
+    <option value="cool">Cool</option>
+    <option value="gaming">Gaming</option>
+    <option value="professional">Professional</option>
+    <option value="minimal">Minimal</option>
+</select>
+<label for="resultCount">Number of usernames to generate</label>
+<select id="resultCount">
+    <option value="10">10 usernames</option>
+    <option value="25">25 usernames</option>
+    <option value="50">50 usernames</option>
+    <option value="100">100 usernames</option>
+</select>
+<label for="platformSelect">Choose a platform</label>
+<select id="platformSelect">
+    <option value="instagram">Instagram</option>
+    <option value="tiktok">TikTok</option>
+    <option value="youtube">YouTube</option>
+    <option value="facebook">Facebook</option>
+    <option value="x">X (Twitter)</option>
+    <option value="reddit">Reddit</option>
+    <option value="github">GitHub</option>
+</select>
+
+                <button class="generate-button" id="generateButton">
+                    Generate Usernames
+                </button>
+
+            </div>
+
+            <section class="results-section">
+                <h2>Your Username Ideas</h2>
+                <div id="usernameResults">
+                    <p>Enter a keyword and click Generate Usernames.</p>
+                </div>
+                <p id="copyMessage" aria-live="polite"></p>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="username-generator.js"></script>
+
+</body>
+</html>
